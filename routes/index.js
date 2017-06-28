@@ -21,23 +21,34 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/api/hotels', function(req, res, next) {
-    Promise.all([
-        Hotel.findAll(),
-        Restaurant.findAll(),
-        Activity.findAll()
-    ])
-        .spread(function(dbHotels, dbRestaurants, dbActivities) {
-            res.render('index', {
-                templateHotels: dbHotels,
-                templateRestaurants: dbRestaurants,
-                templateActivities: dbActivities
-            });
+
+    Hotel.findAll()
+
+        .then(hotels=>{
+            res.json(hotels)
         })
-        .catch(next);
+        .catch(next)
 });
 
-/api/restaurants
+router.get('/api/restaurants', function(req, res, next) {
 
-/api/activities
+    Restaurant.findAll()
+
+        .then(restaurants=>{
+            res.json(restaurants)
+        })
+        .catch(next)
+});
+
+router.get('/api/activities', function(req, res, next) {
+
+    Activity.findAll()
+
+        .then(activities=>{
+            res.json(activities)
+        })
+        .catch(next)
+});
+
 
 module.exports = router;

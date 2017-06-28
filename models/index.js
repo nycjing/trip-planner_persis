@@ -1,18 +1,17 @@
 var db = require('./_db');
+var Sequelize = require('sequelize');
 
 var Place = require('./place');
 var Hotel = require('./hotel');
 var Restaurant = require('./restaurant');
 var Activity = require('./activity');
+var Day = require('./day');
 
-var Day = db.define('day', {
-    number: Sequelize.INTEGER
-});
 
 
 Day.belongsTo(Hotel);
 Day.belongsToMany(Restaurant, {through: 'day_restaurant'});
-Day.belongsToMany(Activity, {through: 'day_activity');
+Day.belongsToMany(Activity, {through: 'day_activity'});
 
 Hotel.belongsTo(Place);
 Restaurant.belongsTo(Place);
@@ -23,5 +22,6 @@ module.exports = {
 	Place,
 	Hotel,
 	Restaurant,
-	Activity
+	Activity,
+	Day
 };

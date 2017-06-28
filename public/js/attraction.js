@@ -29,6 +29,7 @@ var attractionModule = (function () {
   // Attraction class setup
 
   function Attraction (data) {
+    console.log(data);
     utilsModule.merge(data, this); // copy all key-val pairs into this new obj
     this.buildItineraryItem().buildMarker();
   }
@@ -43,6 +44,7 @@ var attractionModule = (function () {
     $button.on('click', function () {
       tripModule.removeFromCurrent(self); // remove from day model
     });
+
     return this;
   };
 
